@@ -72,5 +72,8 @@ $ git config --global core.editor <editor name>
 可以通过以下配置来简化命令行输入，让 Git 用起来更加方便：
 ```
 git config --global alias.st status
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 ```
