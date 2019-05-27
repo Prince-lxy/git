@@ -162,10 +162,10 @@ git branch <branch name>
 删除分支：
 
 ```
-#分支没有新的提交：
+# 分支没有新的提交：
 git branch -d <branch name>
 
-#分支存在新的提交：
+# 分支存在新的提交：
 git branch -D <branch name>
 ```
 
