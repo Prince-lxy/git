@@ -11,7 +11,12 @@
   - **2-3 暂存区文件操作**
   - **2-4 HEAD区文件操作**
 - **3 对分支的操作**
+  - **3-1 分支的创建与删除**
+  - **3-2 分支管理**
 - **4 对远程仓库的操作**
+  - **4-1 远程仓库的添加与删除**
+  - **4-2 远程仓库管理**
+  - **4-3 对远程分支的操作**
 
 ---
 
@@ -144,6 +149,109 @@ git reset --hard HEAD^
 
 ### 3 对分支的操作
 
+由于快照之间以链表的方式存储，通过新的快照可以找到旧的快照，每一个快照都具有很强的独立性，因此 Git 中的多分支结构具有相当的灵活性，使用起来非常高效。
+
+#### 3-1 分支的创建与删除
+
+创建分支：
+
+```
+git branch <branch name>
+```
+
+删除分支：
+
+```
+#分支没有新的提交：
+git branch -d <branch name>
+
+#分支存在新的提交：
+git branch -D <branch name>
+```
+
+#### 3-2 分支管理
+
+查看分支：
+
+```
+git branch
+```
+
+切换分支：
+
+```
+git checkout <branch name>
+```
+
+合并分支：
+
+```
+git merge <branch name>
+
+git rebase <base branch name>
+```
+
+解决合并分支时产生的冲突：
+```
+1. 根据提示手动调整冲突文件
+2. 将冲突文件加入暂存区
+3. git commit
+```
+
 
 
 ### 4 对远程仓库的操作
+
+对远程仓库的操作，实际上就是在操作远程分支与本地分支，核心还是分支操作。
+
+#### 4-1 远程仓库的添加与删除
+
+添加远程仓库：
+
+```
+git remote add <remote name> <url>
+```
+
+删除远程仓库：
+
+```
+git remote remove <remote name>
+```
+
+#### 4-2 远程仓库管理
+
+查看远程仓库：
+
+```
+git remote -v
+
+git remote show <remote name>
+```
+
+重命名远程仓库：
+
+```
+git remote rename <remote name> <new name>
+```
+
+#### 4-3 对远程分支的操作
+
+由于我们的本地的仓库通常是通过 git clone 命令克隆远程仓库得到的，该命令会默认在本地生成一个名为 origin 的远程仓库，并将远程仓库中的 origin/master 分支克隆到本地，并生成同名分支 master ，同时将二者绑定，以至于我们使用 pull 和 push 命令都不需要特别指定远程分支的具体内容。
+
+获取远程仓库的指定分支的更新，并建立一个本地分支来存放:
+
+```
+git fetch <remote name> <remote branch name>:<local branch name>
+```
+
+获取远程仓库指定分支的更新，并与本地分支合并：
+
+```
+git pull <remote name> <remote branch name>:<local branch name>
+```
+
+推送本地分支的更新到远程仓库（如果省略本地分支名，远程分支将会被删除；如果远程分支不存在将会被创建）：
+
+```
+git push <remote name> <local branch name>:<remote branch name>
+```
