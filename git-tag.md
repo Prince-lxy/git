@@ -69,5 +69,5 @@ git tag -d <tag name>
 #### 3-2 删除共享标签
 
 ```
-git tag -d <remote branch name> :refs/tags/<tag name>
+git push <remote branch name> :refs/tags/<tag name>
 ```
